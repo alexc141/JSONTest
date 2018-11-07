@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Iterator;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -15,16 +16,18 @@ public class JSONTester {
 	public static void main(String[]args) throws IOException, ParseException{
 		JSONParser parser = new JSONParser();
 		Object object = parser.parse(new FileReader("constants.json"));
-		
-		
 		JSONObject test = (JSONObject) object;
+		
 		System.out.println(test);
-		JSONArray JSONArray = null;
 		
-		//Add constants to JSONArray
-		
-		JSONArray.add(test.get("name"));
-		
+		JSONArray JSONArray = (JSONArray) test.get("name");
+		/*
+		//Print results
+		Iterator iterator = JSONArray.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+        */
 		try {
 		         ServerSocket srvr = new ServerSocket(1234);
 		         Socket skt = srvr.accept();
